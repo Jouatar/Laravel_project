@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Facade\Concession;
 use App\Models\Singleton;
 use App\Models\Factory\VoitureFactory;
 use App\Models\Facade\Facade;
+use App\Models\Observer\Observer;
+use App\Models\Observer\Sujet;
 
 class DpController extends Controller {
   
@@ -31,15 +34,20 @@ class DpController extends Controller {
       return view('pattern.facade',['usine'=>$tabRes[0], 'concession'=>$tabRes[1], 'facture'=>$tabRes[2] ]);
     }
     if($n==='4'){
-      $facade = new Facade();
-      $tabRes = $facade->commander(1);
-      $tabRes = $facade->commander(2);
-      $tabRes = $facade->commander(1);
-      
-      return view('pattern.iterator');
+      $concession = new Concession('la conss\' à toto');
+      $usine = new VoitureFactory('Usine de Baptiste');
+      $concession->addVoiture($usine->makeCar('renaud'));
+      $concession->addVoiture($usine->makeCar('opel'));
+      $concession->addVoiture($usine->makeCar('renaud'));
+      return view('pattern.iterator',['iteratorConcession'=>$concession->getIterator()]);
     }
     if($n==='5'){
-      return view('pattern.observer');
+      $obsa = new Observer('A');
+      $obsb = new Observer('B');
+      $sujet = new Sujet();
+      $sujet->attach($obsa);
+      $sujet->attach($obsb);
+      return view('pattern.observer', ['sujet'=>$sujet]);
     }
     return view('error404');
   }

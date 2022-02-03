@@ -2,8 +2,9 @@
 @section("body")
 <body class="antialiased">
     <h1>Iterator</h1>
-    <p>
-    </p>
+    @while($iteratorConcession->hasNext())
+    <p>{{ $iteratorConcession->next()->getMarque() }}</p>
+    @endwhile
     <a href="{{ url()->previous() }}">Back</a>
 </body>
 @stop

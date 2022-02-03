@@ -18,10 +18,12 @@ class Facade {
     public function commander($val){
         $newVoiture = null;
         switch($val){
-            case "opel":
+            case 1:
                 $newVoiture = $this->usine->makeCar('opel');
-            case "renaud":
+                break;
+            case 2:
                 $newVoiture = $this->usine->makeCar('renaud');
+                break;
             default:
                 throw new ErrorException('Erreur, la marque n\'existe pas');
         }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Models\Iterator;
 
-class ConcessionIterator {
+class ConcessionIterator{
     private $position = 0;
     private $tabVoiture = [];
 
@@ -10,13 +10,12 @@ class ConcessionIterator {
     }
 
     public function hasNext(){
-        return $this->tabVoiture[$this->position]!==null;
+        return isset($this->tabVoiture[$this->position]);
     } 
 
     public function next(){
         $voiture = $this->tabVoiture[$this->position];
         $this->position++;
         return $voiture;
-
     }
 }
