@@ -49,6 +49,24 @@ class DpController extends Controller {
       $sujet->attach($obsb);
       return view('pattern.observer', ['sujet'=>$sujet]);
     }
+    if($n==='6'){
+      return view('pattern.strategie', []);
+    }
+    if($n==='7'){
+      return view('pattern.template', []);
+    }
+    if($n==='8'){
+      return view('pattern.command', []);
+    }
+    if($n==='9'){
+      return view('pattern.composite', []);
+    }
+    if($n==='10'){
+      return view('pattern.chainofresponsability', []);
+    }
+    if($n==='11'){
+      return view('pattern.state', []);
+    }
     return view('error404');
   }
 
